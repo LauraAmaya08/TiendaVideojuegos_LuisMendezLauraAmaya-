@@ -144,41 +144,41 @@ INSERT INTO plataformas_de_videojuego (id, id_plataforma, id_videojuego) VALUES
 (34, 4, 20); -- Monster Hunter: Rise en Nintendo Switch
 
 -- Insertar datos en la tabla generos_de_videojuego
-INSERT INTO plataformas_de_videojuego (id, id_plataforma, id_videojuego) VALUES
-(1, 1, 1),  -- The Last of Us Part II en PC
-(2, 2, 1),  -- The Last of Us Part II en PlayStation 5
-(3, 2, 2),  -- Ghost of Tsushima en PlayStation 5
-(4, 1, 3),  -- Cyberpunk 2077 en PC
-(5, 2, 4),  -- FIFA 23 en PlayStation 5
-(6, 3, 4),  -- FIFA 23 en Xbox Series X
-(7, 4, 4),  -- FIFA 23 en Nintendo Switch
-(8, 2, 5),  -- Call of Duty: Modern Warfare en PlayStation 5
-(9, 1, 5),  -- Call of Duty: Modern Warfare en PC
-(10, 1, 6), -- God of War en PC
-(11, 2, 6), -- God of War en PlayStation 5
-(12, 1, 7), -- Assassin's Creed Valhalla en PC
-(13, 2, 7), -- Assassin's Creed Valhalla en PlayStation 5
-(14, 1, 8), -- Spider-Man: Miles Morales en PC
-(15, 2, 8), -- Spider-Man: Miles Morales en PlayStation 5
-(16, 1, 9), -- Mortal Kombat 11 en PC
-(17, 2, 9), -- Mortal Kombat 11 en PlayStation 5
-(18, 4, 10), -- FIFA 22 en Nintendo Switch
-(19, 1, 11), -- The Legend of Zelda: Breath of the Wild en PC
-(20, 2, 11), -- The Legend of Zelda: Breath of the Wild en PlayStation 5
-(21, 4, 12), -- Mario Kart 8 Deluxe en Nintendo Switch
-(22, 1, 13), -- Demon's Souls en PC
-(23, 2, 13), -- Demon's Souls en PlayStation 5
-(24, 1, 14), -- Ratchet & Clank: Rift Apart en PC
-(25, 2, 14), -- Ratchet & Clank: Rift Apart en PlayStation 5
-(26, 1, 15), -- Resident Evil Village en PC
-(27, 2, 15), -- Resident Evil Village en PlayStation 5
-(28, 1, 16), -- Final Fantasy VII Remake en PC
-(29, 2, 16), -- Final Fantasy VII Remake en PlayStation 5
-(30, 4, 17), -- Super Mario Odyssey en Nintendo Switch
-(31, 2, 18), -- The Evil Within en PlayStation 5
-(32, 1, 18), -- The Evil Within en PC
-(33, 2, 19), -- Horizon Forbidden West en PlayStation 5
-(34, 4, 20); -- Monster Hunter: Rise en Nintendo Switch
+INSERT INTO generos_de_videojuego (id, id_genero, id_videojuego) VALUES
+(1, 4, 1),  -- The Last of Us Part II: Acción
+(2, 5, 1),  -- The Last of Us Part II: Aventura
+(3, 4, 2),  -- Ghost of Tsushima: Acción
+(4, 5, 2),  -- Ghost of Tsushima: Aventura
+(5, 6, 3),  -- Cyberpunk 2077: RPG
+(6, 4, 3),  -- Cyberpunk 2077: Acción
+(7, 7, 4),  -- FIFA 23: Deportes
+(8, 20, 4), -- FIFA 23: Multijugador
+(9, 4, 5),  -- Call of Duty: Modern Warfare: Acción
+(10, 16, 5), -- Call of Duty: Modern Warfare: Shooter
+(11, 4, 6), -- God of War: Acción
+(12, 5, 6), -- God of War: Aventura
+(13, 4, 7), -- Assassin's Creed Valhalla: Acción
+(14, 5, 7), -- Assassin's Creed Valhalla: Aventura
+(15, 4, 8), -- Spider-Man: Miles Morales: Acción
+(16, 5, 8), -- Spider-Man: Miles Morales: Aventura
+(17, 15, 9), -- Mortal Kombat 11: Lucha
+(18, 20, 9), -- Mortal Kombat 11: Multijugador
+(19, 7, 10), -- FIFA 22: Deportes
+(20, 4, 11), -- The Legend of Zelda: Breath of the Wild: Acción
+(21, 5, 11), -- The Legend of Zelda: Breath of the Wild: Aventura
+(22, 7, 12), -- Mario Kart 8 Deluxe: Carreras
+(23, 4, 13), -- Demon's Souls: Acción
+(24, 6, 13), -- Demon's Souls: RPG
+(25, 4, 14), -- Ratchet & Clank: Rift Apart: Acción
+(26, 5, 14), -- Ratchet & Clank: Rift Apart: Aventura
+(27, 4, 15), -- Resident Evil Village: Acción
+(28, 8, 15), -- Resident Evil Village: Horror
+(29, 6, 16), -- Final Fantasy VII Remake: RPG
+(30, 4, 17), -- Super Mario Odyssey: Acción
+(31, 8, 18), -- The Evil Within: Horror
+(32, 4, 19), -- Horizon Forbidden West: Acción
+(33, 4, 20); -- Monster Hunter: Rise: Acción
+
 
 
 -- Insertar datos en la tabla producto
