@@ -16,7 +16,7 @@ Este sistema está enfocado en cubrir los aspectos fundamentales de la administr
    ```
 
 ## Diagrama
-<img src="images/ERDDiagram.webp" alt="Diagrama de relación de entidad" width="auto" />
+<img src="images/ERDDiagram.jpg" alt="Diagrama de relación de entidad" width="auto" />
 
 ## Entidad-Relación
 
