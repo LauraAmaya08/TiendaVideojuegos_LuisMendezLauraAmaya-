@@ -180,6 +180,156 @@ Este sistema está enfocado en cubrir los aspectos fundamentales de la administr
    - **Tipo**: Muchos a Muchos (N:M)
    - **Entidades**: `Productos_venta` (tabla intermedia) conecta `Venta` y `producto`.
 
+## Consultas SQL
+
+### 1. Listar todos los videojuegos de una plataforma específica (por ejemplo, "PlayStation").
+
+```sql
+DELIMITER //
+CREATE PROCEDURE ListarVideojuegosPorPlataforma(IN plataformaNombre VARCHAR(255))
+BEGIN
+    SELECT p.nombre AS producto
+    FROM producto p
+    JOIN plataformas_de_videojuego pv ON pv.id_videojuego = p.id_videojuego
+    JOIN plataforma pla ON pv.id_plataforma = pla.id_plataforma
+    WHERE pla.nombre = plataformaNombre;
+END //
+DELIMITER ;
+```
+
+### 2. Obtener todos los productos en una categoría (videojuegos, consolas o accesorios) cuyo stock sea inferior a un valor dado.
+
+```sql
+DELIMITER //
+CREATE PROCEDURE ObtenerProductosBajoStock(IN categoriaNombre VARCHAR(255), IN stockMin INT)
+BEGIN
+    SELECT p.nombre AS producto, p.stock
+    FROM producto p
+    JOIN categoria c ON p.id_categoria = c.id_categoria
+    WHERE c.nombre = categoriaNombre AND p.stock < stockMin;
+END //
+DELIMITER ;
+```
+
+### 3. Mostrar todas las ventas realizadas por un cliente específico en un rango de fechas.
+
+```sql
+DELIMITER //
+CREATE PROCEDURE VentasPorClienteEnRangoFechas(IN clienteID INT, IN fechaInicio DATE, IN fechaFin DATE)
+BEGIN
+    SELECT v.id_venta, v.fecha
+    FROM Venta v
+    WHERE v.id_cliente = clienteID AND v.fecha BETWEEN fechaInicio AND fechaFin;
+END //
+DELIMITER ;
+```
+
+### 4. Calcular el total de ventas de un empleado en un mes dado.
+
+```sql
+DELIMITER //
+CREATE PROCEDURE TotalVentasPorEmpleadoEnMes(IN empleadoID INT, IN mes INT, IN anio INT)
+BEGIN
+    SELECT SUM(v.precio) AS total_ventas
+    FROM Venta v
+    JOIN Empleado e ON v.id_empleado = e.id_empleado
+    JOIN producto p ON p.id_producto = v.id_producto
+    WHERE e.id_empleado = empleadoID AND MONTH(v.fecha) = mes AND YEAR(v.fecha) = anio;
+END //
+DELIMITER ;
+```
+
+### 5. Listar los productos más vendidos en un período determinado.
+
+```sql
+DELIMITER //
+CREATE PROCEDURE ProductosMasVendidosEnPeriodo(IN fechaInicio DATE, IN fechaFin DATE)
+BEGIN
+    SELECT p.nombre AS producto, SUM(pv.cantidad) AS total_vendido
+    FROM Productos_venta pv
+    JOIN Venta v ON pv.id_venta = v.id_venta
+    JOIN producto p ON pv.id_producto = p.id_producto
+    WHERE v.fecha BETWEEN fechaInicio AND fechaFin
+    GROUP BY p.nombre
+    ORDER BY total_vendido DESC;
+END //
+DELIMITER ;
+```
+
+### 6. Consultar el stock disponible de un producto por su nombre.
+
+```sql
+DELIMITER //
+CREATE PROCEDURE StockDisponiblePorNombre(IN productoNombre VARCHAR(255))
+BEGIN
+    SELECT p.nombre AS producto, p.stock
+    FROM producto p
+    WHERE p.nombre = productoNombre;
+END //
+DELIMITER ;
+```
+
+### 7. Mostrar las órdenes de compra realizadas a un proveedor específico en el último año.
+
+```sql
+DELIMITER //
+CREATE PROCEDURE OrdenesPorProveedorEnUltimoAno(IN proveedorID INT)
+BEGIN
+    SELECT o.id_orden_proveedor, o.fecha
+    FROM Orden_proveedor o
+    WHERE o.id_proveedor = proveedorID AND o.fecha >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR);
+END //
+DELIMITER ;
+```
+
+### 8. Listar los empleados que han trabajado más de un año en la tienda.
+
+```sql
+DELIMITER //
+CREATE PROCEDURE EmpleadosConMasDeUnAno()
+BEGIN
+    SELECT e.nombre, e.fecha_contratacion
+    FROM Empleado e
+    WHERE DATEDIFF(CURDATE(), e.fecha_contratacion) > 365;
+END //
+DELIMITER ;
+```
+
+### 9. Obtener la cantidad total de productos vendidos en un día específico.
+
+```sql
+DELIMITER //
+CREATE PROCEDURE TotalProductosVendidosEnDia(IN fechaEspecifica DATE)
+BEGIN
+    SELECT SUM(pv.cantidad) AS total_vendidos
+    FROM Productos_venta pv
+    JOIN Venta v ON pv.id_venta = v.id_venta
+    WHERE v.fecha = fechaEspecifica;
+END //
+DELIMITER ;
+```
+
+### 10. Consultar las ventas de un producto específico (por nombre o ID) y cuántas unidades se vendieron.
+
+```sql
+DELIMITER //
+CREATE PROCEDURE VentasPorProducto(IN productoID INT)
+BEGIN
+    SELECT p.nombre AS producto, SUM(pv.cantidad) AS unidades_vendidas
+    FROM Productos_venta pv
+    JOIN producto p ON pv.id_producto = p.id_producto
+    WHERE p.id_producto = productoID
+    GROUP BY p.nombre;
+END //
+DELIMITER ;
+```
+
+## Consideraciones
+
+- Asegúrate de que el nombre de las tablas y las columnas coincidan con las definiciones en tu base de datos.
+- Ejecuta estas definiciones de procedimientos almacenados en tu base de datos para poder utilizarlas posteriormente.
+
+Puedes agregar estas funciones y procedimientos a tu base de datos para ejecutar fácilmente las consultas requeridas. Si necesitas realizar más cambios o agregar más funcionalidades, ¡avísame!
 
 ## Contacto
 Para cualquier pregunta o sugerencia, por favor contacta a:
